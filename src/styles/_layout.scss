@@ -1,0 +1,21 @@
+:root {
+  --block_margin: calc(1.5rem + 0.1vw);
+  --block_padding_inline: 2rem;
+  --transisiton-time: 300ms;
+
+  /*========== Margenes ==========*/
+  --mb-1: 0.5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+$trans_time: var(--transisiton-time);
+$block_margin: var(--block_margin);
+$block_pad_in: var(--block_padding_inline);
