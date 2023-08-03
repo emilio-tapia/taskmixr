@@ -1,13 +1,13 @@
 ---
-import "../styles/index.scss";
-import Header from "../components/Header.astro";
-import MainScreen from "../screens/MainScreen.astro";
-import ResultsScreen from "../screens/ResultsScreen.astro";
+import "../../styles/index.scss";
+import Header from "../../components/Header.astro";
+import MainScreen from "../../screens/MainScreen.astro";
+import ResultsScreen from "../../screens/ResultsScreen.astro";
 import i18next, { t, changeLanguage } from "i18next";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
-import Footer from "../components/Footer.astro";
+import Footer from "../../components/Footer.astro";
 
-changeLanguage("en");
+changeLanguage("es");
 ---
 
 <html lang={i18next.language} data-theme-general data-mode>
@@ -42,7 +42,7 @@ section.mainscreen {
 </style>
 
 <script>
-  import { windowLoadDarkModeCheck, windowLoadThemeCheck, windowLoadLangCheck, windowLoadTourCheck } from '../helpers/mediaQueries';
+  import { windowLoadDarkModeCheck, windowLoadThemeCheck, windowLoadLangCheck, windowLoadTourCheck } from '../../helpers/mediaQueries';
   windowLoadDarkModeCheck();
   windowLoadThemeCheck();
   windowLoadLangCheck();
