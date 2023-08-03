@@ -1,47 +1,32 @@
-# Astro Starter Kit: Minimal
+# TASKMIXR
 
-```
+<!-- ```
 npm create astro@latest -- --template minimal
-```
+``` -->
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+[![Open TaskMixr](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> 🧑‍🚀 **Imagine this scene...** You have some house chores for you and your family. Your siblings argue between them about the house chore they have to do. You do not want to have problems. That is why a **RANDOM TASK ASSIGNER** comes to play. Have fun!
 
-## 🚀 Project Structure
+## 🚀 How to use?
 
-Inside of your Astro project, you'll see the following folders and files:
+> 1. Input the names and taks.
+> 2. Push the random button.
+> 3. You can write a custom title that reflects the tasks you are going to do.
+> 4. Save the results that make all of you happy.
+> 5. In the bottom section, each result is stored individually by the date, you can find the custom title in right side of each result.
 
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### 🚀 For Devs
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+This project is using Astro JS and Typescript currently.
+If you want to contribute, you are welcome to help this little task manager.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### 🚀 Future Implementations
 
-Any static assets, like images, can be placed in the `public/` directory.
+> Onboard Tour.
+> Search filter for saved results.
+> Migration to a dynamic framework.
+> Task Manager Modes (Not only random).
+> Getting old entries.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check the [Discord server](https://astro.build/chat).
