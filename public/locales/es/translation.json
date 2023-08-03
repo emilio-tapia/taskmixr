@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title1": "TASK",
+    "title2": "MIXR",
+    "user": "Usuario",
+    "chore": "Tarea",
+    "titleblank": "Titulo personalizado para tus resultados...",
+    "random": "Random",
+    "save": "Guardar",
+    "enteruser": "Nombres...",
+      "enterchore": "Tareas...",
+      "resultlist": "Resultados",
+    "footer": {
+      "developed": "Desarrollado por",
+      "copyright": "MIT License"
+    }
+  },
+  "resultsContainer": {
+    "title": "Resultados Guardados",
+    "title_tooltip": "Todos los resultados son guardados localmente."
+  }
+}

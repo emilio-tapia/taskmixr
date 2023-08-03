@@ -1,0 +1,22 @@
+{
+    "site": {
+      "title1": "TASK",
+    "title2": "MIXR",
+      "user": "User",
+      "chore": "Task",
+      "titleblank": "Custom title for your results...",
+      "random": "Random",
+      "save": "Save",
+      "enteruser": "Names...",
+      "enterchore": "Tasks...",
+      "resultlist": "Results",
+      "footer": {
+        "developed": "Developed by",
+        "copyright": "MIT License"
+      }
+    },
+    "resultsContainer": {
+      "title": "Saved Results",
+      "title_tooltip": "All results are stored locally."
+    }
+  }
