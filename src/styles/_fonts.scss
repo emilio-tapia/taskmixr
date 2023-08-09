@@ -1,29 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-// DM SANS
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&display=swap');
-
-// REM
-@import url('https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-// HANDJET
-@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100;200;300;400;500;600;700;800;900&display=swap');
-// TEKTUR
-@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400;500;600;700;800;900&display=swap');
-// Grandiflora
-@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
-// Gasoek One
-@import url('https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap');
-// BAGEL FAT ONE
-@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
-// Darumadrop One
-@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
-// Sofia+Sans+Extra+Condensed
-@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1;0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,1;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
-// SILKSCREEN
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-// RUBIK DIRT
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap');
-// Kdam Thmor Pro
-@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
 
 :root {
   /* Perfect Fourth */
@@ -53,18 +28,6 @@
 }
 
 $font1: 'Poppins', sans-serif;
-$font2: 'DM Sans', sans-serif;
-$font3: 'REM', sans-serif;
-$font4: 'Handjet', cursive;
-$font5: 'Tektur', cursive;
-$font6: 'Grandiflora One', serif;
-$font7: 'Gasoek One', sans-serif;
-$font8: 'Bagel Fat One', cursive;
-$font9: 'Darumadrop One', cursive;
-$font10: 'Sofia Sans Extra Condensed', sans-serif;
-$font11: 'Silkscreen', cursive;
-$font12: 'Rubik Dirt', cursive;
-$font13: 'Kdam Thmor Pro', sans-serif;
 
 $s_s: var(--font-size-s);
 $s_6: var(--font-size-6);

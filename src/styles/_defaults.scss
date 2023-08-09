@@ -91,6 +91,22 @@
   p {
     font-size: f.$s_s;
   }
+
+  // INPUT HIDDEN FOR INTERACTION WITH LABEL
+  input[type='radio'],
+  input[type='checkbox'] {
+    height: 0px;
+    width: 0px;
+    display: none;
+
+    &:is(:checked) + label {
+      opacity: 1;
+    }
+
+    & + label {
+      cursor: pointer;
+    }
+  }
 }
 
 @mixin resetAllElements() {

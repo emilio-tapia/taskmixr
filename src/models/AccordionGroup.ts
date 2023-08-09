@@ -27,7 +27,6 @@ export class AccordionGroup {
       this.removeResults.bind(this)
     );
     this.checkBtn = this.getCheckBtn();
-    
   }
 
   // ===================
@@ -35,38 +34,50 @@ export class AccordionGroup {
   // ===================
 
   async init() {
-    this.resetDummy()
-    this.localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
-    this.getLocalStorageResults();
+    this.resetDummy();
+    this.localStorageData = await Helpers.loadFromLocalStorage(localStorageKey);
+    await this.getLocalStorageResults();
   }
 
   resetDummy() {
     this.parentSectionElement.innerHTML = '';
   }
 
-  getLocalStorageResults() {
+  async getLocalStorageResults() {
     const isLocalStorageNull = this.localStorageData === null;
     // const isLocalStorageEmpty = isLocalStorageNull ? true : Object.keys(this.localStorageData).length === 0;
-    const isLocalHistoryNull = Boolean(this.localStorageData.history);
-    const isLocalHistoryEmpty = this.localStorageData.history?.length === 0;
+    const isLocalHistoryNull = !isLocalStorageNull
+      ? !Boolean(this.localStorageData.history)
+      : true;
+    const isLocalHistoryEmpty = !isLocalHistoryNull
+      ? this.localStorageData.history?.length === 0
+      : true;
 
     // IF LOCAL STORAGE EXISTS
     if (!isLocalStorageNull) {
-      // IF LOCAL HISTORY DOES NOT EXIST
+      // IF LOCAL HISTORY EXIST
       if (!isLocalHistoryNull) {
-        // IF LOCAL HISTORY DOES NOT EXIST
+        // IF LOCAL HISTORY HAS ITEMS
+        if (!isLocalHistoryEmpty) {
+          this.createAccordionBasedInSavedResults();
+        } else {
+          this.displayNoResults();
+        }
+        return;
+      }
+
+      // IF LOCAL HISTORY DOES NOT EXISTS
+      if (isLocalHistoryNull) {
+        if (isLocalHistoryEmpty) {
+          this.displayNoResults();
+          return;
+        }
+
         this.displayNoResults();
         return;
       }
-      // IF LOCAL HISTORY EXISTS
-      if (isLocalHistoryNull) {
-        // IF LOCAL HISTORY HAS ITEMS
-        if (!isLocalHistoryEmpty) {
-        }
-
-        this.createAccordionBasedInSavedResults();
-        return;
-      }
+    } else {
+      this.displayNoResults();
     }
   }
 
@@ -75,7 +86,26 @@ export class AccordionGroup {
   // ===================
 
   displayNoResults() {
-    this.parentSectionElement.innerHTML = `<p data-unavailable> No results available <p/>`;
+    const localStorageLang = this.localStorageData
+      ? this.localStorageData.lang
+      : document.documentElement.lang || '';
+    let text = 'No results available';
+
+    if (Boolean(localStorageLang)) {
+      switch (localStorageLang) {
+        case 'en':
+          text = 'No results available';
+          break;
+        case 'es':
+          text = 'No se encontraron resultados';
+          break;
+        case 'fr':
+          text = 'Aucun résultat disponible';
+          break;
+      }
+    }
+
+    this.parentSectionElement.innerHTML = `<p data-unavailable> ${text} <p/>`;
   }
 
   // ===================
@@ -117,7 +147,6 @@ export class AccordionGroup {
   }
 
   async checkModeOn(e: any) {
-    console.log(e);
     const checkBox = e.target as HTMLInputElement;
     const isCheckModeOn = checkBox!.checked;
 
@@ -127,7 +156,7 @@ export class AccordionGroup {
 
   showDeleteBtn(ischeckModeOn: boolean) {
     const deleteBtn = document
-      .querySelector('.results__checkmode')
+      .querySelector('.sr__options')
       ?.querySelectorAll('[aria-hidden]');
 
     for (let i = 0; i < deleteBtn!.length; i++) {
@@ -167,23 +196,24 @@ export class AccordionGroup {
   // ===================
 
   async removeResults(e: any) {
-
     let dataToSave = this.localStorageData.history;
-    dataToSave = await this.getAllCheckedResults(dataToSave)
+    dataToSave = await this.getAllCheckedResults(dataToSave);
 
-    const dataToStorage = {
-      lang:  Helpers.getLangUserPreference({ save: false }),
-      tour: Helpers.getTourUserPreference({ save: false }),
-      darkMode: Helpers.getDarkModeUserPreference({ save: false }),
-      theme: Helpers.getThemeUserPreference({ save: false }),
-      history: dataToSave,
-    };
+    if (dataToSave.length !== this.localStorageData.history.length) {
+      const dataToStorage = {
+        lang: await Helpers.getLangUserPreference({ save: false }),
+        tour: Helpers.getTourUserPreference({ save: false }),
+        darkMode: Helpers.getDarkModeUserPreference({ save: false }),
+        theme: Helpers.getThemeUserPreference({ save: false }),
+        history: dataToSave,
+      };
 
-    // // SAVE TO STORAGE
-    Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
+      // // SAVE TO STORAGE
+      Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
 
-    this.exitCheckMode();
-    this.init();
+      this.exitCheckMode();
+      this.init();
+    }
   }
 
   exitCheckMode() {
@@ -193,41 +223,36 @@ export class AccordionGroup {
 
   uncheckCheckbox() {
     const checkElement = document.getElementById(
-      'results__checkmode__check'
+      'sr__checkmode'
     ) as HTMLInputElement;
+    console.log(checkElement);
     checkElement!.checked = false;
   }
 
   removeTrashBtn() {
-    const deleteBtn = document
-      .querySelector('.results__checkmode')
-      ?.querySelectorAll('[aria-hidden]');
-    for (let i = 0; i < deleteBtn!.length; i++) {
-      const element = deleteBtn![i];
-      element.setAttribute('aria-hidden', 'true');
-    }
+    const deleteBtn = document.getElementById('sr__delete_btn')!.parentElement!;
+    deleteBtn.setAttribute('aria-hidden', 'true');
   }
 
-  async getAllCheckedResults(data:any){
+  async getAllCheckedResults(data: any) {
     // RESULT DATA WITH GENERAL ID
-    let d = data
+    let d = data;
     const checkboxes = document
-    .querySelector('.results__accordion')!
-    .querySelectorAll('[type="checkbox"]');
-
+      .querySelector('.sr__accordion')!
+      .querySelectorAll('[type="checkbox"]');
 
     for (let i = 0; i < checkboxes.length; i++) {
       const element = checkboxes[i] as HTMLInputElement; // get checkbox element
-      if (element.checked) { // IF ELEMENT IS CHECKED
+      if (element.checked) {
+        // IF ELEMENT IS CHECKED
         const id = element.id.slice(0, 15); // remove _checkbox from id
         // RETURN ARRAY FROM ELEMENT THAT ARE NOT CHECKED
-        d = await d.filter( 
-          (element: any) => element.id !== id // RETURN ALL ELEMENT THAT ARE NOT THE SAME RESULT ID 
+        d = await d.filter(
+          (element: any) => element.id !== id // RETURN ALL ELEMENT THAT ARE NOT THE SAME RESULT ID
         );
-
       }
     }
 
-    return d
+    return d;
   }
 }

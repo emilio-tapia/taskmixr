@@ -24,14 +24,32 @@ export class ChoreGroup extends InputGroup {
   async getLocalStorageResults(initNumber: number) {
     const isLocalStorageNull = this.localStorageData === null;
     // const isLocalStorageEmpty = isLocalStorageNull ? true : Object.keys(this.localStorageData).length === 0;
-    const isLocalHistoryNull = Boolean(this.localStorageData.history);
-    const isLocalHistoryEmpty = this.localStorageData.history?.length === 0;
+    const isLocalHistoryNull = !isLocalStorageNull ? !Boolean(this.localStorageData.history) : true;
+    const isLocalHistoryEmpty = !isLocalHistoryNull ? this.localStorageData.history?.length === 0 : true;
 
     // IF LOCAL STORAGE EXISTS
     if (!isLocalStorageNull) {
-      // IF LOCAL HISTORY DOES NOT EXIST
+      // IF LOCAL HISTORY EXIST
       if (!isLocalHistoryNull) {
-        // IF LOCAL HISTORY DOES NOT EXIST
+        // IF LOCAL HISTORY HAS ITEMS
+        if (!isLocalHistoryEmpty) {
+          await this.createElementBasedInSavedResults();
+          for (let i = 0; i < this.storeArray.length; i++) {
+            await this.createResultAndStoreToArray(i);
+            await this.setElementEventToInputChange(this.storeArray[i]);
+          }
+        } else {
+          for (let i = 0; i < initNumber; i++) {
+            await this.createElementAndStoreToArray();
+            await this.createResultAndStoreToArray(i);
+            this.setElementEventToInputChange();
+          }
+        }
+        return;
+      }
+
+      // IF LOCAL HISTORY DOES NOT EXISTS
+      if (isLocalHistoryNull) {
         for (let i = 0; i < initNumber; i++) {
           await this.createElementAndStoreToArray();
           await this.createResultAndStoreToArray(i);
@@ -39,25 +57,14 @@ export class ChoreGroup extends InputGroup {
         }
         return;
       }
-      // IF LOCAL HISTORY EXISTS
-      if (isLocalHistoryNull) {
-        // IF LOCAL HISTORY HAS ITEMS
-        if (isLocalHistoryEmpty) {
-          for (let i = 0; i < initNumber; i++) {
-            await this.createElementAndStoreToArray();
-            await this.createResultAndStoreToArray(i);
-            this.setElementEventToInputChange();
-          }
-        } else {
-          await this.createElementBasedInSavedResults();
-          for (let i = 0; i < this.storeArray.length; i++) {
-            await this.createResultAndStoreToArray(i);
-            await this.setElementEventToInputChange(this.storeArray[i]);
-          }
-        }
-        return;
+    } else {
+      for (let i = 0; i < initNumber; i++) {
+        await this.createElementAndStoreToArray();
+        await this.createResultAndStoreToArray(i);
+        this.setElementEventToInputChange();
       }
     }
+    return
   }
 
   async createResultAndStoreToArray(index: number) {

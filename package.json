@@ -1,7 +1,7 @@
 {
-  "name": "random-chores",
+  "name": "taskmixr",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,7 +12,7 @@
   "dependencies": {
     "astro": "^2.9.1",
     "astro-i18next": "^1.0.0-beta.21",
-    "driver.js": "^1.1.0",
+    "driver.js": "^1.2.1",
     "sass": "^1.64.1"
   }
 }
