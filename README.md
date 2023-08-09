@@ -1,10 +1,8 @@
 # TASKMIXR
 
-<!-- ```
-npm create astro@latest -- --template minimal
-``` -->
+[![Open TaskMixr](https://i.ibb.co/YRMZ75z/Screen-Shot-2023-08-08-at-7-38-36-PM.png)](https://taskmixr.com)
 
-[![Open TaskMixr](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
+[![Open TaskMixr](https://i.ibb.co/R35Jk1R/Screen-Shot-2023-08-08-at-7-38-42-PM.png)](https://taskmixr.com)
 
 > 🧑‍🚀 **Imagine this scene...** You have some house chores for you and your family. Your siblings argue between them about the house chore they have to do. You do not want to have problems. That is why a **RANDOM TASK ASSIGNER** comes to play. Have fun!
 
@@ -23,10 +21,10 @@ If you want to contribute, you are welcome to help this little task manager.
 
 ### 🚀 Future Implementations
 
-> Onboard Tour.
-> Search filter for saved results.
+> Able to edit each saved result.
+> Search filter by title for saved results.
 > Migration to a dynamic framework.
-> Task Manager Modes (Not only random).
-> Getting old entries.
+> Grocery Manager Mode.
+> Remember old entries.
 
-Feel free to check the [Discord server](https://astro.build/chat).
+<!-- Feel free to check the [Discord server](https://astro.build/chat). -->
