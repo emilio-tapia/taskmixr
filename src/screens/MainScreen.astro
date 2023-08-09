@@ -1,4 +1,6 @@
 ---
+import "../styles/MainScreen.scss";
+import "../styles/Buttons.scss";
 import CardField from '../components/CardField.astro';
 import i18next, { t } from 'i18next';
 import DiceIcon from '../components/icons/DiceIcon.astro';
@@ -72,156 +74,6 @@ import SaveIcon from '../components/icons/SaveIcon.astro';
   </CardField>
 </section>
 
-<style lang="scss" is:global>
-  @use '../styles/mixins' as m;
-  section.mainscreen {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-    min-height: fit-content;
-    justify-content: space-between;
-    flex-direction: column;
-    
-    @include m.mediaBreakpoint(700){
-      flex-direction: row;
-    }
-
-
-    h5 {
-        color: var(--accent-text-light);
-        font-weight: 500;
-        font-size: var(--maintitle-size);
-      }
-    
-
-    & > aside {
-      display: flex;
-      flex-direction: column;
-      
-      gap: 1rem;
-
-      & > *{
-        flex: 1;
-        
-        justify-content: space-between;
-      }
-
-      @include m.mediaBreakpoint(500){
-        flex-direction: row;
-    }
-
-      @include m.mediaBreakpoint(700){
-        flex-direction: column;
-
-        & > *{
-          flex: auto;
-        justify-content: flex-start;
-      }
-    }
-
-      .user,
-      .chores {
-        &__btn {
-          flex-direction: row !important;
-
-          button {
-            flex: 1;
-          }
-        }
-      }
-
-      div {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    input {
-      padding: 0.5rem;
-      border: 0;
-      border-radius: 0.5rem;
-      background: var(--bg-light-2);
-      color: var(--bg-dark-text);
-    }
-
-    .results {
-      &__section {
-        flex: 1;
-        justify-content: space-between;
-      }
-
-      &__container {
-        ul {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        li {
-          & > div {
-            padding: 0.5rem;
-            border: 0;
-            border-radius: 0.5rem;
-            background: var(--bg-light-2);
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-
-            @include m.mediaBreakpoint(330){
-              flex-direction: row;
-        }
-
-            span:first-child {
-              color: var(--accent-text-light);
-            }
-            span:last-child {
-              color: var(--accent-text-light);
-            }
-          }
-        }
-      }
-
-      &__content{
-        display: flex;
-    flex-direction: column;
-    gap: 1rem;
-      }
-
-      &__mainBtns {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        gap: 1rem;
-
-        svg{
-          margin-inline: auto;
-        }
-
-        &>:first-child {
-          flex-basis:  100%;
-        }
-
-        & > :not(:first-child) {
-          flex: 1;
-fill: var(--white);
-        }
-
-        @include m.mediaBreakpoint(500){
-          &>:first-child {
-          flex: 5;
-        }
-
-        & > :not(:first-child) {
-          flex: 0;
-        }
-    }
-      }
-    }
-
-  }
-</style>
-
 <script >
   import {Input} from '../models/Input'
   import {ChoreGroup} from '../models/ChoreGroup'
@@ -235,20 +87,40 @@ fill: var(--white);
     results,
     users
   } from '../helpers/data.ts';
+import type { Result } from '../models/ResultMainScreen'
+
+
+function setInputName(inputType:string){
+  switch (document.documentElement.lang) {
+    case 'en':
+      if(inputType === 'task') return 'Task'
+      if(inputType === 'user') return 'User'
+      break;
+    case 'es':
+      if(inputType === 'task') return 'Tarea'
+      if(inputType === 'user') return 'Usuario'
+      break;
+    case 'fr':
+      if(inputType === 'task') return 'Tâche'
+      if(inputType === 'user') return 'Usager'
+      break;
+  }
+}
 
 
   // ================== CHORE CLASS ========= ===== //
 
   class Chore extends Input {
     constructor(storeArray: Array<Chore>, section: HTMLElement) {
-      super({storeArray: storeArray, section:section, displayName: 'Task'});
+      super({storeArray: storeArray, section:section, displayName: setInputName('task')});
     }
   }
+
   // ================== USER CLASS ============== //
 
   class User extends Input {
     constructor(storeArray: Array<User>, section: HTMLElement) {
-      super({storeArray: storeArray, section:section});
+      super({storeArray: storeArray, section:section, displayName: setInputName('user')});
     }
   }
   
@@ -258,8 +130,8 @@ fill: var(--white);
     // RETURN DUMMY RESULTS
     document.getElementById('results')!.querySelector('ul')!.innerHTML = '';
 
-    new UserGroup(users, 'users', User);
-    new ChoreGroup(chores, 'chores', Chore, results);
+    new UserGroup(users as User[], 'users', User);
+    new ChoreGroup(chores as Chore[], 'chores', Chore, results as Result[]);
     const saveBtn = new SaveButton('saveBtn');
     const randomBtn = new RandomButton('mainBtn');
 

@@ -1,131 +1,57 @@
 ---
+import "../styles/ResultsScreen.scss";
+import "../styles/Buttons.scss";
 import CheckIcon from '../components/icons/CheckIcon.astro';
 import PaletteIcon from '../components/icons/PaletteIcon.astro';
+import SearchIcon from '../components/icons/SearchIcon.astro';
 import TrashIcon from '../components/icons/TrashIcon.astro';
 import '../styles/AccordionItem.scss';
 import i18next, { t } from 'i18next';
 ---
 
-<section class="results__container">
-  <div class="results__card" data-card data-shadow_card>
-    <div class="results__title">
+
+<!-- sr === saved results -->
+
+<section class="sr">
+  <div class="sr__card" data-card data-shadow_card>
+    <div class="sr__title">
       <h5>{t('resultsContainer.title')}</h5>
-      <ul class="results__checkmode">
-        <li aria-hidden="true">
-          <button id="results__checkmode__delete" data-thrash>
-            <TrashIcon />
-          </button>
-        </li>
-        <li>
-          <input
-            type="checkbox"
-            name="results__checkmode__check"
-            id="results__checkmode__check"
-            data-check
-          />
-          <label for="results__checkmode__check">
-            <CheckIcon />
-          </label>
-        </li>
-      </ul>
-      <!-- <div class="results__trash">
-        <details>
-          <summary><TrashIcon /></summary>
-          <ol id="#themeList">
-            <li>
-              <button class="trash" data-thrash="all">
-                <span>All</span>
-              </button>
-            </li>
-            <li>
-              <button class="trash" data-thrash="last">
-                <span>Last</span>
-              </button>
-            </li>
-            <li>
-              <button class="trash" data-thrash="custom">
-                <span>Custom</span>
-              </button>
-            </li>
-          </ol>
-        </details>
-      </div> -->
+      <nav class="sr__options">
+        <ul >
+          <li aria-hidden="true">
+            <button id="sr__delete_btn" data-thrash>
+              <TrashIcon />
+            </button>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              name="sr__checkmode"
+              id="sr__checkmode"
+              data-check
+            />
+            <label for="sr__checkmode">
+              <CheckIcon />
+            </label>
+          </li>
+          <!-- <li>
+            <input
+              type="checkbox"
+              name="sr__search"
+              id="sr__search"
+              data-check
+            />
+            <label for="sr__search">
+              <SearchIcon />
+            </label>
+          </li> -->
+        </ul>
+      </nav>
     </div>
-    <div class="results__accordion" id="accordion"></div>
+    <div class="sr__accordion" id="accordion"></div>
   </div>
 </section>
 
-<style lang="scss">
-  .results {
-    &__container {
-      width: 100%;
-
-      h5 {
-        color: var(--accent-text-light);
-        font-weight: 500;
-        font-size: var(--maintitle-size);
-      }
-    }
-
-    &__title {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    &__trash {
-      position: relative;
-      fill: var(--accent-light-3);
-      display: grid;
-      place-content: center;
-
-      details {
-        ol {
-          left: -7.1rem;
-        }
-
-        button {
-          background: none;
-
-          &:hover {
-            span {
-              color: var(--accent-light-3);
-            }
-          }
-        }
-
-        span {
-          width: auto;
-          height: auto;
-          border-radius: 0%;
-          box-shadow: none;
-          color: var(--accent-text-light);
-        }
-      }
-    }
-
-    &__accordion {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    &__checkmode {
-      display: flex;
-      fill: var(--accent-light-3);
-      gap: 0.5rem;
-
-      & > * {
-        display: grid;
-        place-content: center;
-
-        &:last-child {
-          zoom: 1.5;
-        }
-      }
-    }
-  }
-</style>
 
 <script>
   import { Accordion } from '../models/Accordion';
