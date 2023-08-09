@@ -49,7 +49,6 @@ export class SaveButton extends ButtonClick {
     try {
       // GET LOCAL STORAGE HISTORY
       const localStorage = Helpers.loadFromLocalStorage(localStorageKey);
-      console.log(localStorage);
 
       // CHECK IF HISTORY EXISTS
       let historyData = [];
@@ -65,12 +64,13 @@ export class SaveButton extends ButtonClick {
       // SET GENERAL LOCAL STORAGE OBJECT
 
       let dataToStorage = {
-        lang:  Helpers.getLangUserPreference({ save: false }),
+        lang:  await Helpers.getLangUserPreference({ save: false }),
         tour: Helpers.getTourUserPreference({ save: false }),
         darkMode: Helpers.getDarkModeUserPreference({ save: false }),
         theme: Helpers.getThemeUserPreference({ save: false }),
         history: [...historyData, this.resultToStorage()],
       };
+
 
       // SAVE TO STORAGE
       Helpers.saveToLocalStorage(localStorageKey, dataToStorage);

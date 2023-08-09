@@ -1,4 +1,3 @@
-
 import {
   chores,
   lang,
@@ -54,14 +53,14 @@ export class Helpers {
   }
 
   // Function to save data to local storage
-  static  saveToLocalStorage(key: string, data: any) {
+  static saveToLocalStorage(key: string, data: any) {
     try {
-      console.log('DATA TO STORE', data);
+      // console.log('DATA TO STORE', data);
       const serializedData = JSON.stringify(data);
       localStorage.setItem(key, serializedData);
-      console.log(`Data saved successfully with key: ${key}`);
+      // console.log(`Data saved successfully with key: ${key}`);
     } catch (error) {
-      console.error('Error saving data to local storage:', error);
+      // console.error('Error saving data to local storage:', error);
     }
   }
 
@@ -70,7 +69,7 @@ export class Helpers {
     try {
       const serializedData = localStorage.getItem(key);
       if (serializedData === null) {
-        console.log(`No data found with key: ${key}`);
+        // console.log(`No data found with key: ${key}`);
         return null;
       }
 
@@ -78,7 +77,7 @@ export class Helpers {
       // console.log(`Data loaded successfully with key: ${key}`);
       return data;
     } catch (error) {
-      console.error('Error loading data from local storage:', error);
+      // console.error('Error loading data from local storage:', error);
       return null;
     }
   }
@@ -119,14 +118,12 @@ export class Helpers {
 
     // // SAVE TO STORAGE
     Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
-
   }
-
 
   static getDarkModeUserPreference({ save }: any) {
     // get checked att
     const darkModeCheckbox = document.getElementById(
-      'darkMode'
+      'darkModeSwitch'
     ) as HTMLInputElement;
     const isChecked = darkModeCheckbox.checked;
     const isNavDarkMode = window.matchMedia(
@@ -158,7 +155,6 @@ export class Helpers {
     // get checked att
     const themeSelectorAtt = document.documentElement.dataset['themeGeneral'];
 
-
     if (save === true) {
       const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
 
@@ -167,7 +163,6 @@ export class Helpers {
         ...localStorageData,
         theme: themeSelectorAtt,
       };
-      
 
       // SAVE TO STORAGE
       Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
@@ -176,31 +171,32 @@ export class Helpers {
     return themeSelectorAtt;
   }
 
-  static getLangUserPreference({ save }: any) {
-    // get checked att
-    const langSelectorAtt = document.documentElement.lang;
+  static async getLangUserPreference({ save }: any) {
+    try {
+      // get checked att
+      const langSelectorAtt = document.documentElement.lang;
+      // console.log(langSelectorAtt);
 
+      if (save === true) {
+        const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
 
-    if (save === true) {
-      const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
+        // SET GENERAL LOCAL STORAGE OBJECT
+        const dataToStorage = {
+          ...localStorageData,
+          lang: langSelectorAtt,
+        };
 
-      // SET GENERAL LOCAL STORAGE OBJECT
-      const dataToStorage = {
-        ...localStorageData,
-        lang: langSelectorAtt,
-      };
-      
-
-      // SAVE TO STORAGE
-      Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
+        // SAVE TO STORAGE
+        Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
+      }
+      return langSelectorAtt;
+    } catch (error) {
+      // console.log(error);
     }
-
-    return langSelectorAtt;
   }
 
   static getTourUserPreference({ save }: any) {
-    const tourAtt = Helpers.loadFromLocalStorage(localStorageKey).tour;
-
+    const tourAtt = Helpers.loadFromLocalStorage(localStorageKey).tour || true;
 
     if (save === true) {
       const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
@@ -210,7 +206,6 @@ export class Helpers {
         ...localStorageData,
         tour: tourAtt,
       };
-      
 
       // SAVE TO STORAGE
       Helpers.saveToLocalStorage(localStorageKey, dataToStorage);
@@ -219,13 +214,26 @@ export class Helpers {
     return tourAtt;
   }
 
-  static resetDetailsPopup(){
-    const detailsElements = document.querySelectorAll('details');
-          // CHECK TO ALL ELEMENTS
-          for (let i = 0; i < detailsElements.length; i++) {
-            const element = detailsElements[i];
-              // IF ELEMENT IS OPEN, IT WILL CLOSE
-              if (element.open) element.open = false;
-          }
+  static detectTouchscreen() {
+    var result = false;
+    if (window.PointerEvent && 'maxTouchPoints' in navigator) {
+      // if Pointer Events are supported, just check maxTouchPoints
+      if (navigator.maxTouchPoints > 0) {
+        result = true;
+      }
+    } else {
+      // no Pointer Events...
+      if (
+        window.matchMedia &&
+        window.matchMedia('(any-pointer:coarse)').matches
+      ) {
+        // check for any-pointer:coarse which mostly means touchscreen
+        result = true;
+      } else if (window.TouchEvent || 'ontouchstart' in window) {
+        // last resort - check for exposed touch events API / event handler
+        result = true;
+      }
+    }
+    return result;
   }
 }

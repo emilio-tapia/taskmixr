@@ -1,5 +1,6 @@
 import { Helpers } from './Helpers';
-import { localStorageKey } from './data';
+import { localStorageKey, lang } from './data';
+import { initDriver } from './driver';
 
 export function windowLoadDarkModeCheck() {
   // LOAD LOCAL STORAGE
@@ -7,7 +8,7 @@ export function windowLoadDarkModeCheck() {
 
   if (localStorageData === null) {
     setDarkModeToDOM();
-    Helpers.getDarkModeUserPreference({save:true});
+    Helpers.getDarkModeUserPreference({ save: true });
     return;
   }
 
@@ -18,7 +19,7 @@ export function windowLoadDarkModeCheck() {
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
       setDarkModeToDOM();
-      Helpers.getDarkModeUserPreference({save:true});
+      Helpers.getDarkModeUserPreference({ save: true });
       return;
     }
   }
@@ -33,7 +34,7 @@ export function windowLoadDarkModeCheck() {
 
   function setDarkModeToDOM() {
     const darkModeCheckbox = document.getElementById(
-      'darkMode'
+      'darkModeSwitch'
     ) as HTMLInputElement;
     const darkModeLabel = darkModeCheckbox.nextElementSibling;
     // SET ATT TO HTML
@@ -48,7 +49,7 @@ export function windowLoadDarkModeCheck() {
 
   function setLightModeToDOM() {
     const darkModeCheckbox = document.getElementById(
-      'darkMode'
+      'darkModeSwitch'
     ) as HTMLInputElement;
     // SET ATT TO HTML
     document.documentElement.dataset['mode'] = 'light';
@@ -61,16 +62,15 @@ export function windowLoadThemeCheck() {
 
   if (localStorageData === null) {
     setThemeDefault();
-    Helpers.getThemeUserPreference({save:true});
+    Helpers.getThemeUserPreference({ save: true });
     return;
   }
 
-
   // IF NOT LOCAL STORAGE, USE NAVIGATOR
   if (!localStorageData.theme) {
-      setThemeDefault();
-      Helpers.getThemeUserPreference({save:true});
-      return;
+    setThemeDefault();
+    Helpers.getThemeUserPreference({ save: true });
+    return;
   }
 
   setThemeByColor(localStorageData.theme);
@@ -85,6 +85,52 @@ export function windowLoadThemeCheck() {
   }
 }
 
-export function windowLoadLangCheck(){}
+export function windowLoadLangCheck() {
+  const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
 
-export function windowLoadTourCheck(){}
+  if (localStorageData.lang) {
+    if(localStorageData.lang !== document.documentElement.lang){
+      window.location.href = localStorageData.lang;
+    }
+    return;
+  }
+
+  if (localStorageData === null) {
+    setLangDefault();
+    Helpers.getLangUserPreference({ save: true });
+    return;
+  }
+
+  // IF NOT LOCAL STORAGE, USE NAVIGATOR
+  if (!localStorageData.lang) {
+    setLangDefault();
+    Helpers.getLangUserPreference({ save: true });
+    return;
+  }
+
+  return;
+
+  function setLangDefault() {
+    document.documentElement.lang = 'en';
+  }
+}
+
+export function windowLoadTourCheck() {
+  const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
+
+  if (localStorageData === null) {
+    initDriver()
+    Helpers.getTourUserPreference({ save: true });
+    return;
+  }
+
+  // IF NOT LOCAL STORAGE, USE NAVIGATOR
+  if (!localStorageData.tour) {
+    initDriver()
+    Helpers.getTourUserPreference({ save: true });
+    return;
+  }
+  return;
+
+
+}

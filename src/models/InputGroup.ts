@@ -24,7 +24,8 @@ export class InputGroup {
       sectionSelector
     ) as HTMLElement;
     this.elementClass = elementClass;
-    this.localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
+    this.localStorageData = null;
+    
     this.init(2);
     this.addBtn = Helpers.handleAddBtnClick(
       this.parentSectionElement,
@@ -39,9 +40,9 @@ export class InputGroup {
 
   async init(initFields: number) {
     this.resetDummy();
-    await this.getLocalStorageResults(initFields)
+    this.localStorageData = await Helpers.loadFromLocalStorage(localStorageKey);
+    await this.getLocalStorageResults(initFields);
   }
-
 
   resetDummy() {
     // RETIRE DUMMY ELEMENTS
@@ -49,37 +50,46 @@ export class InputGroup {
       '';
   }
 
-
-  async getLocalStorageResults(initNumber: number){
+  async getLocalStorageResults(initNumber: number) {
     const isLocalStorageNull = this.localStorageData === null;
     // const isLocalStorageEmpty = isLocalStorageNull ? true : Object.keys(this.localStorageData).length === 0;
-    const isLocalHistoryNull = Boolean(this.localStorageData.history);
-    const isLocalHistoryEmpty = this.localStorageData.history?.length === 0;
+    const isLocalHistoryNull = !isLocalStorageNull
+      ? !Boolean(this.localStorageData.history)
+      : true;
+    const isLocalHistoryEmpty = !isLocalHistoryNull
+      ? this.localStorageData.history?.length === 0
+      : true;
 
     // IF LOCAL STORAGE EXISTS
     if (!isLocalStorageNull) {
-      // IF LOCAL HISTORY DOES NOT EXIST
+      // IF LOCAL HISTORY EXIST
       if (!isLocalHistoryNull) {
-        // IF LOCAL HISTORY DOES NOT EXIST
-        for (let i = 0; i < initNumber; i++) {
-          await this.createElementAndStoreToArray();
-        }
-        return;
-      }
-      // IF LOCAL HISTORY EXISTS
-      if (isLocalHistoryNull) {
         // IF LOCAL HISTORY HAS ITEMS
-        if (isLocalHistoryEmpty) {
+        if (!isLocalHistoryEmpty) {
+          await this.createElementBasedInSavedResults();
+        } else {
           for (let i = 0; i < initNumber; i++) {
             await this.createElementAndStoreToArray();
           }
-        } else {
-          await this.createElementBasedInSavedResults();
         }
-        
         return;
       }
+
+      // IF LOCAL HISTORY DOES NOT EXISTS
+      if (isLocalHistoryNull) {
+          for (let i = 0; i < initNumber; i++) {
+            await this.createElementAndStoreToArray();
+          }
+        return;
+      }
+    } else {
+      // IF LOCAL STORAGE IS NULL
+      for (let i = 0; i < initNumber; i++) {
+        await this.createElementAndStoreToArray();
+      }
     }
+
+    return
   }
 
   async createElementAndStoreToArray() {
@@ -97,7 +107,6 @@ export class InputGroup {
       this.localStorageData.history[localStorageHistoryLastIndex];
     const localStorageHistoryLastResultKeyObj =
       localStorageHistoryLastResult[localStorageKeyToGet];
-      
 
     for (const key in localStorageHistoryLastResultKeyObj) {
       if (
@@ -120,7 +129,7 @@ export class InputGroup {
       }
     }
 
-    return 
+    return;
   }
 
   // HANDLE CLICK EVENT - ADD BUTTON
@@ -155,7 +164,6 @@ export class InputGroup {
   appendRemoveBtn() {
     const btnsection =
       this.parentSectionElement.querySelector('[class*="__btn"]');
-    console.log(btnsection);
     btnsection?.appendChild(this.removeBtn);
   }
 
