@@ -1,0 +1,73 @@
+---
+import "../../styles/index.scss";
+import "../../styles/Buttons.scss";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { HeadHrefLangs } from "astro-i18next/components";
+import i18next, { t, changeLanguage } from "i18next";
+
+changeLanguage("es");
+---
+
+<html lang={i18next.language} data-theme-general data-mode>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- <meta name="generator" content={Astro.generator} /> -->
+    <title>{t('site.404.title')} | {t('site.title1')}{t('site.title2')}</title>
+    <HeadHrefLangs />
+  </head>
+  <body>
+    <Header />
+
+    <main class="error">
+      <h2>{t('site.404.display')}</h2>
+      <button class="saveBtn"><a href="/">{t('site.404.back')}</a></button>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+
+<style lang="scss">
+  .error {
+    text-align: center;
+
+    color: var(--accent-gray-title2);
+    padding-block-end: var(--block_margin);
+    gap: 3rem;
+    min-height: 28rem;
+
+    h2 {
+      font-size: var(--font-size-4);
+    }
+
+    button {
+      padding: 0.35rem 2rem;
+    }
+
+    a {
+      color: white;
+    }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+  }
+</style>
+
+<script>
+  import {
+    windowLoadDarkModeCheck,
+    windowLoadThemeCheck,
+    windowLoadLangCheck,
+    windowLoadTourCheck,
+  } from '../../helpers/mediaQueries';
+  windowLoadDarkModeCheck();
+  windowLoadThemeCheck();
+  windowLoadLangCheck();
+  windowLoadTourCheck();
+</script>
