@@ -10,13 +10,13 @@ import Footer from "../../components/Footer.astro";
 changeLanguage("es");
 ---
 
-<html lang={i18next.language} data-theme-general data-mode>
+<html lang={i18next.language} data-theme-general data-mode data-tour>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <!-- <meta name="generator" content={Astro.generator} /> -->
-    <title>{t('site.title1')}{t('site.title2')}</title>
+    <title>{t('site.title1')}{t('site.title2')} | {t('site.catchphrase')}</title>
     <HeadHrefLangs/>
   </head>
   <body>
@@ -31,20 +31,19 @@ changeLanguage("es");
   </body>
 </html>
 
-<style lang="scss" is:global>
-
-section.mainscreen {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-    min-height: fit-content;
-    justify-content: space-between;}
-</style>
 
 <script>
-  import { windowLoadDarkModeCheck, windowLoadThemeCheck, windowLoadLangCheck, windowLoadTourCheck } from '../../helpers/mediaQueries';
-  windowLoadDarkModeCheck();
+import { windowLoadDarkModeCheck, windowLoadThemeCheck, windowLoadLangCheck, windowLoadTourCheck } from '../../helpers/mediaQueries';
+  
+
+
+  window.addEventListener('load', async (e) => {
+    windowLoadDarkModeCheck();
   windowLoadThemeCheck();
   windowLoadLangCheck();
   windowLoadTourCheck();
+  
+  });
+
+  
 </script>
