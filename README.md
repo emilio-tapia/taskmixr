@@ -1,10 +1,5 @@
 # TASKMIXR
 
-<<<<<<< HEAD
-[![Open TaskMixr](https://i.ibb.co/YRMZ75z/Screen-Shot-2023-08-08-at-7-38-36-PM.png)](https://taskmixr.com)
-
-[![Open TaskMixr](https://i.ibb.co/R35Jk1R/Screen-Shot-2023-08-08-at-7-38-42-PM.png)](https://taskmixr.com)
-=======
 <div  style="display: flex; flex-wrap: wrap; align-items:center; justify-content:center;">
 <img src="https://i.ibb.co/YRMZ75z/Screen-Shot-2023-08-08-at-7-38-36-PM.png" alt="light mode" style="width:300px; display: inline;"/>
 
@@ -12,7 +7,6 @@
 </div>
 
 [Go to TaskMixr](https://taskmixr.com)
->>>>>>> 12be0e6 (update read me)
 
 > 🧑‍🚀 **Imagine this scene...** You have some house chores for you and your family. Your siblings argue between them about the house chore they have to do. You do not want to have problems. That is why a **RANDOM TASK ASSIGNER** comes to play. Have fun!
 
