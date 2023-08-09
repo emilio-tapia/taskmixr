@@ -1,30 +1,35 @@
 ---
+import '../styles/Header.scss';
 import DarkModeIcon from '../components/icons/DarkModeIcon.astro';
 import PaletteIcon from './icons/PaletteIcon.astro';
 import ShareIcon from './icons/ShareIcon.astro';
 import i18next, { t } from 'i18next';
 import { LanguageSelector } from 'astro-i18next/components';
+import CoffeeIcon from './icons/CoffeeIcon.astro';
 ---
 
 <header class="header">
   <div class="header__bg">
     <section class="header__bounds">
-      <div class="header__title-container">
+      <div class="header__title">
         <h1><span>{t('site.title1')}</span><span>{t('site.title2')}</span></h1>
       </div>
-      <nav id="menu" aria-label="menu" class="header__nav-header">
+      <nav id="headerNav" aria-label="menu" class="header__nav">
         <ul>
-          <li>
+          <li class="header__lang" data-submenu>
             <LanguageSelector
               languageMapping={{ en: '', es: '', fr: '' }}
-              class="langSelector"
+              class="header__lang_selector"
               showFlag={true}
             />
           </li>
-          <li>
-            <details class="themeSelector">
-              <summary><PaletteIcon /></summary>
-              <ol id="#themeList">
+          <li class="header__theme" data-submenu>
+            <input type="checkbox" name="themeSwitch" id="themeSwitch" />
+            <label for="themeSwitch">
+              <PaletteIcon />
+            </label>
+            <nav aria-expanded="false">
+              <ul id="themeSwitch_list" class="header__themeList">
                 <li>
                   <button class="color" data-theme="purple">
                     <span></span>
@@ -40,360 +45,215 @@ import { LanguageSelector } from 'astro-i18next/components';
                     <span></span>
                   </button>
                 </li>
-              </ol>
-            </details>
+              </ul>
+            </nav>
           </li>
-          <li>
-            <input type="checkbox" name="darkMode" id="darkMode" />
-            <label for="darkMode">
+          <li class="header__dark">
+            <input type="checkbox" name="darkModeSwitch" id="darkModeSwitch" />
+            <label for="darkModeSwitch">
               <DarkModeIcon />
             </label>
           </li>
-          <!-- <li>
-            <a href="#" id="shareApp">
-              <label>
-                <ShareIcon />
-              </label>
-            </a>
-          </li> -->
         </ul>
       </nav>
     </section>
   </div>
 </header>
 
-<style lang="scss">
-  @use '../styles/mixins' as m;
-  @use '../styles/fonts' as f;
-
-  #curves {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    @include m.mediaBreakpoint(570) {
-      display: none;
-      visibility: hidden;
-    }
-
-    div {
-      width: 100px;
-      height: 100px;
-      border: 2px solid black;
-      background: green;
-    }
-
-    &.width {
-      div {
-        border-color: transparent transparent transparent black;
-        background: red;
-      }
-    }
-  }
-
-  #curve5 {
-    border-radius: 60px 0 0px 0;
-  }
-
-  .header {
-    &__bg {
-      position: relative;
-      padding-block-start: calc(var(--block_margin) * 3) !important;
-
-      @include m.mediaBreakpoint(570) {
-        position: relative;
-        padding-block-start: calc(var(--block_margin)) !important;
-      }
-    }
-
-    &__bounds {
-      background: transparent;
-      border-radius: 1rem;
-      // padding-inline: 1rem;
-      justify-content: center;
-      @include m.mediaBreakpoint(570) {
-        justify-content: space-between;
-      }
-
-      // max-width: 1700px;
-      // width: 92%;
-      margin-inline: auto;
-      display: flex;
-
-      & > div {
-        border-radius: 0.5rem;
-        display: grid;
-        place-content: center;
-        gap: 0;
-        // backdrop-filter: blur(10px);
-        color: white;
-      }
-    }
-
-    &__title-container {
-      z-index: 3;
-      position: relative;
-      aspect-ratio: auto;
-      flex-direction: column;
-      line-height: 1.4;
-      transition: background-color var(--transisiton-time),
-        color var(--transisiton-time), margin var(--transisiton-time);
-
-      // @include m.mediaBreakpoint(570) {
-      //   aspect-ratio: 16/4;
-      // }
-
-      h1 {
-        color: var(--accent-gray);
-        color: var(--accent-light-3);
-        color: var(--accent-gray-title2);
-        font-size: var(--h1-size-mobile);
-        text-align: center;
-
-        line-height: 0.7;
-        margin-block-end: 0.3rem;
-        // font-size: 2rem;
-
-        font-family: f.$font1;
-        // -webkit-text-stroke: 0.3px var(--accent-gray);
-        text-shadow: 0 2px 3px var(--d-shw-2);
-        text-transform: uppercase;
-
-        font-weight: bold;
-        background: transparent;
-        filter: drop-shadow(1px 1px 1px var(--accent-light-2));
-
-        @include m.mediaBreakpoint(570) {
-          font-size: var(--h1-size-desktop);
-          padding-inline-end: 2rem;
-          max-width: 22rem;
-          font-size: clamp(2rem, 0.8333rem + 2.6667vw, 2.5rem);
-        }
-
-        span {
-          font-family: inherit;
-          font-size: inherit;
-          display: inline;
-          font-weight: inherit;
-
-          &:first-child {
-            color: var(--accent-gray-title1);
-          }
-        }
-      }
-
-      h3 {
-        font-weight: 300;
-        font-size: clamp(1.125rem, 0.8864rem + 1.0909vw, 1.5rem);
-      }
-    }
-
-    &__nav-header {
-      top: 0;
-      left: 50%;
-      translate: -50% 0%;
-      position: fixed;
-      background: var(--bg-light);
-      border-radius: 1rem;
-      padding-inline: 1rem;
-      display: flex;
-      border-radius: 0 0 1.3rem 1.3rem;
-      padding-block: 0.5rem;
-
-      @include m.mediaBreakpoint(570) {
-        position: relative;
-        border-radius: 0;
-
-        background: transparent;
-        border-radius: 0;
-        padding-inline: 0;
-        padding-block: 0;
-        top: auto;
-        left: auto;
-        translate: 0;
-      }
-
-      .langSelector {
-        background: transparent;
-        border: none;
-        font-size: var(--font-size-5);
-        display: flex;
-        align-items: center;
-        stroke: var(--accent-light-3);
-      }
-
-      details.themeSelector {
-        ol {
-          top: -2.7rem;
-          left: 0;
-
-          overflow: hidden;
-          display: flex;
-          padding-block: 0.45rem;
-          padding-block-start: 3.5rem;
-          padding-inline: 0.75rem;
-          gap: 0;
-          justify-content: space-between;
-          box-shadow: none;
-          border: none;
-          background: #1f1f1f40;
-          z-index: -1;
-          transition: var(--transisiton-time);
-
-          @include m.mediaBreakpoint(570) {
-            top: 50%;
-            translate: -50% -50%;
-            right: 3.8rem;
-            left: unset;
-
-            gap: 0.75rem;
-            padding-block: 0.45rem;
-            padding-inline: 0.85rem;
-          }
-        }
-      }
-
-      details.themeSelector[open] {
-        ol {
-          top: 0rem;
-
-          @include m.mediaBreakpoint(570) {
-            top: 50%;
-          }
-        }
-      }
-
-      ul {
-        display: inherit;
-        flex-direction: row;
-        gap: 1rem;
-        align-items: center;
-        color: var(--bg-light-2);
-
-        & > li {
-          padding-block-end: 0.1rem;
-          border-bottom: 1px solid transparent;
-          &:hover {
-            border-bottom: 1px solid var(--accent-light-3);
-          }
-        }
-      }
-
-      a {
-        & > * {
-          cursor: inherit;
-        }
-      }
-
-      details {
-        cursor: pointer;
-      }
-    }
-
-    label,
-    summary {
-      fill: var(--accent-light-3);
-    }
-  }
-
-  [data-theme='purple'] {
-    span {
-      background: hsl(235 32% 52%);
-    }
-  }
-  [data-theme='green'] {
-    span {
-      background: #5fbf79;
-    }
-  }
-  [data-theme='red'] {
-    span {
-      background: hsl(0, 45%, 54%);
-    }
-  }
-</style>
-
 <script>
   import { Helpers } from '../helpers/Helpers';
-import { DetailsAnimation } from '../models/DetailsAnimation';
+  import { localStorageKey } from '../helpers/data';
 
-  function setDataColorTheme() {
-    const themeButtons = document
-      .getElementById('#themeList')
-      ?.querySelectorAll('button');
+  // ==============
+  // THEME SWITCH
+  // ==============
 
-    if (themeButtons) {
-      for (let i = 0; i < themeButtons.length; i++) {
-        const element = themeButtons[i];
-        const color = element.dataset['theme'];
-        element.addEventListener('click', (e) => {
-          document.documentElement.dataset['themeGeneral'] = color;
-          Helpers.getThemeUserPreference({ save: true });
-        });
-      }
-    }
-
-    Helpers.resetDetailsPopup();
+  interface ColorThemeSwitchHandler {
+    themeButtons: NodeListOf<HTMLButtonElement>;
   }
 
-  function manageDetailsPopup() {
-    const detailsElements = document.querySelectorAll('details');
-    detailsElements.forEach((detail) =>
-      detail.addEventListener('click', handleClickDetails)
-    );
+  class ColorThemeSwitchHandler {
+    constructor(selector: string) {
+      this.themeButtons = document
+        .getElementById(selector)
+        ?.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+      this.handleThemeSwitch();
+    }
 
-    function handleClickDetails(e: any) {
-      if (window.matchMedia('(max-width: 570px)').matches) {
-        const titleHeader = document.querySelector('.header__title-container');
-        const isExpanded = e.currentTarget.getAttribute('aria-expanded');
-        if (isExpanded === 'true') {
-          e.currentTarget.setAttribute('aria-expanded', 'false');
-          titleHeader?.removeAttribute('data-showMenuMobile');
-        } else {
-          e.currentTarget.setAttribute('aria-expanded', 'true');
-          titleHeader?.setAttribute('data-showMenuMobile', '');
+    handleThemeSwitch() {
+      if (this.themeButtons) {
+        for (let i = 0; i < this.themeButtons.length; i++) {
+          const element = this.themeButtons[i];
+          const color = element.dataset['theme'];
+          element.addEventListener('click', (e) => {
+            document.documentElement.dataset['themeGeneral'] = color;
+            Helpers.getThemeUserPreference({ save: true });
+          });
         }
       }
-
-      Helpers.resetDetailsPopup();
     }
   }
 
-  function handleDarkModeToogle() {
-    // GET CHECK ELEMENT
-    const darkModeCheck = document.getElementById(
-      'darkMode'
-    ) as HTMLInputElement;
-    // SET CHECK EVENT
-    darkModeCheck?.addEventListener('change', (e: any) => {
-      // GET CHECK VALUE
-      let isDarkModeOn = e.currentTarget.checked;
+  // ==============
+  // DARK MODE
+  // ==============
 
-      // IF CHECK CONDITION
-      if (isDarkModeOn) {
-        document.documentElement.dataset['mode'] = 'dark';
-        darkModeCheck.nextElementSibling!.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"></path></svg>
-    `;
-      } else {
-        document.documentElement.dataset['mode'] = 'light';
-        darkModeCheck.nextElementSibling!.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path
-    d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z" ></path></svg>
-    `;
-      }
-
-      Helpers.getDarkModeUserPreference({ save: true });
-    });
+  interface DarkModeSwitchHandler {
+    darkModeCheckbox: HTMLInputElement;
   }
 
-  const selectorid = document.querySelector('.langSelector');
-  selectorid?.setAttribute('id', 'langSelectElement');
-  manageDetailsPopup();
-  setDataColorTheme();
-  handleDarkModeToogle();
+  class DarkModeSwitchHandler {
+    constructor(selector: string) {
+      this.darkModeCheckbox = document.getElementById(
+        selector
+      ) as HTMLInputElement;
+      this.handleDarkModeSwitch();
+    }
 
-  document.querySelectorAll('details').forEach((el) => {
-    new DetailsAnimation(el)
+    handleDarkModeSwitch() {
+      // SET CHECK EVENT
+      this.darkModeCheckbox?.addEventListener('change', (e: Event) => {
+        // GET CHECK VALUE
+        let isDarkModeOn = (e.currentTarget as HTMLInputElement).checked;
+
+        // IF CHECK CONDITION
+        if (isDarkModeOn) {
+          document.documentElement.dataset['mode'] = 'dark';
+          this.darkModeCheckbox.nextElementSibling!.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.905 14.143 0a9.946 9.946 0 0 0 2.735-5.119A9.003 9.003 0 0 1 12 11.807z"></path>
+          </svg>
+        `;
+        } else {
+          document.documentElement.dataset['mode'] = 'light';
+          this.darkModeCheckbox.nextElementSibling!.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z"></path>
+          </svg>
+        `;
+        }
+
+        Helpers.getDarkModeUserPreference({ save: true });
+      });
+    }
+  }
+
+  // ==============
+  // SUB MENU
+  // ==============
+
+  interface SubmenuHandler {
+    submenuItems: NodeListOf<Element>;
+    title: HTMLElement;
+  }
+
+  class SubmenuHandler {
+    constructor() {
+      this.submenuItems = document.querySelectorAll('[data-submenu]');
+      this.title = document.querySelector('.header__title')!;
+      this.init();
+    }
+
+    private init() {
+      this.submenuItems.forEach((item) => {
+        // const label = item.querySelector('label')!;
+        const nav = item.querySelector('nav')!;
+        const checkbox = item.querySelector(
+          'input[type="checkbox"]'
+        ) as HTMLInputElement;
+
+        checkbox.addEventListener('change', () => {
+          this.toggleSubMenu(nav, checkbox);
+        });
+      });
+
+      // Add a global event listener to handle clicks outside the nav
+      document.addEventListener('click', (event) =>
+        this.handleOutsideClick(event)
+      );
+    }
+
+    private toggleSubMenu(nav: Element, checkbox: HTMLInputElement) {
+      const expanded = checkbox.checked;
+      console.log(nav, expanded);
+
+      // Close other open submenus
+      this.submenuItems.forEach((item) => {
+        const otherCheckbox = item.querySelector(
+          'input[type="checkbox"]'
+        ) as HTMLInputElement;
+        const otherNav = item.querySelector('nav')!;
+
+        if (nav !== otherNav && otherCheckbox.checked) {
+          otherCheckbox.checked = false;
+          otherNav.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle the current submenu
+      nav.setAttribute('aria-expanded', expanded.toString());
+
+      const mediaQueryDesktop = window.matchMedia('(max-width: 569px)');
+      console.log(mediaQueryDesktop);
+      mediaQueryDesktop.matches && expanded
+        ? this.title.setAttribute('data-showMenuMobile', '')
+        : this.title.removeAttribute('data-showMenuMobile');
+    }
+
+    private handleOutsideClick(event: Event) {
+      const isOutsideNav = !(event.target as Element).closest('[data-submenu]');
+
+      if (isOutsideNav) {
+        this.closeAllSubmenus();
+      }
+    }
+
+    private closeAllSubmenus() {
+      this.submenuItems.forEach((item) => {
+        const checkbox = item.querySelector(
+          'input[type="checkbox"]'
+        ) as HTMLInputElement;
+        const nav = item.querySelector('nav')!;
+        checkbox.checked = false;
+        nav.setAttribute('aria-expanded', 'false');
+      });
+      this.title.removeAttribute('data-showMenuMobile');
+    }
+  }
+
+  window.addEventListener('load', async (e) => {
+    new DarkModeSwitchHandler('darkModeSwitch');
+    new ColorThemeSwitchHandler('themeSwitch_list');
+    const submenuHandler = new SubmenuHandler();
+
+    const langButtons = document.querySelectorAll('button.lang');
+    for (let i = 0; i < langButtons.length; i++) {
+      const element = langButtons[i];
+      element.addEventListener('click', async (e: Event) => {
+        const target = e.target as HTMLButtonElement;
+        const parent = target.parentNode as HTMLElement;
+        const langValue = parent.attributes[0].value;
+        switch (langValue) {
+          case '/':
+            document.documentElement.lang = 'en'
+            break;
+          case '/es':
+          document.documentElement.lang = 'es'
+            break;
+          case '/fr':
+          document.documentElement.lang = 'fr'
+            break;
+        }
+
+        async function unloadLang(){
+          await Helpers.getLangUserPreference({ save: true });
+          window.location.href = langValue.slice(0);
+        }
+
+        unloadLang()
+
+        // window.addEventListener('beforeunload', async () => {});
+      });
+    }
   });
 </script>
