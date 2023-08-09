@@ -1,0 +1,50 @@
+.sr {
+  width: 100%;
+
+  &__card {
+    h5 {
+      color: var(--accent-text-light);
+      font-weight: 500;
+      font-size: var(--maintitle-size);
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__options {
+    svg {
+      fill: var(--accent-light-3);
+    }
+
+    ul {
+      display: flex;
+      gap: 0.5rem;
+
+      & > * {
+        display: grid;
+        place-content: center;
+
+        &:nth-child(2) {
+          zoom: 1.4;
+        }
+      }
+    }
+  }
+
+  &__trash {
+    position: relative;
+    fill: var(--accent-light-3);
+    display: grid;
+    place-content: center;
+  }
+
+  &__accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
