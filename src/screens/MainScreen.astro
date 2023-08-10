@@ -2,7 +2,7 @@
 import "../styles/MainScreen.scss";
 import "../styles/Buttons.scss";
 import CardField from '../components/CardField.astro';
-import i18next, { t } from 'i18next';
+import { t } from 'i18next';
 import DiceIcon from '../components/icons/DiceIcon.astro';
 import SaveIcon from '../components/icons/SaveIcon.astro';
 ---
@@ -20,7 +20,7 @@ import SaveIcon from '../components/icons/SaveIcon.astro';
         </div>
       </div>
       <div class="user__btn">
-        <button class="addBtn">+</button>
+        <button class="addBtn" aria-label="Add user">+</button>
       </div>
     </CardField>
     <CardField className="chores" idName={'chores'}>
@@ -34,7 +34,7 @@ import SaveIcon from '../components/icons/SaveIcon.astro';
         </div>
       </div>
       <div class="chores__btn">
-        <button class="addBtn">+</button>
+        <button class="addBtn" aria-label="Add task">+</button>
       </div>
     </CardField>
   </aside>
@@ -62,12 +62,13 @@ import SaveIcon from '../components/icons/SaveIcon.astro';
         id="results__title"
         contenteditable="Results Title"
         placeholder={t('site.titleblank')}
+        aria-label="Custom title"
       />
-      <button type="submit" class="mainBtn" id="mainBtn">
+      <button type="submit" class="mainBtn" id="mainBtn" aria-label="Random results">
         <DiceIcon/>
       </button>
 
-      <button type="submit" class="saveBtn" id="saveBtn" disabled
+      <button type="submit" class="saveBtn" id="saveBtn"  aria-label="Save results" disabled
         ><SaveIcon/></button
       >
     </div>

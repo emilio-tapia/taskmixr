@@ -134,3 +134,16 @@ export function windowLoadTourCheck() {
 
 
 }
+
+export function windowSetTransitions(){
+  let root = document.documentElement;
+  let transitionChange = false;
+  const timeout = setTimeout(() => {
+    root.style.setProperty('--transisiton-time', '300ms');
+    transitionChange = true;
+  }, 750);
+
+  if(transitionChange){
+    clearTimeout(timeout)
+  }
+}

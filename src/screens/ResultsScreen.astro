@@ -2,11 +2,9 @@
 import "../styles/ResultsScreen.scss";
 import "../styles/Buttons.scss";
 import CheckIcon from '../components/icons/CheckIcon.astro';
-import PaletteIcon from '../components/icons/PaletteIcon.astro';
-import SearchIcon from '../components/icons/SearchIcon.astro';
 import TrashIcon from '../components/icons/TrashIcon.astro';
 import '../styles/AccordionItem.scss';
-import i18next, { t } from 'i18next';
+import { t } from 'i18next';
 ---
 
 
@@ -19,7 +17,7 @@ import i18next, { t } from 'i18next';
       <nav class="sr__options">
         <ul >
           <li aria-hidden="true">
-            <button id="sr__delete_btn" data-thrash>
+            <button id="sr__delete_btn" aria-label="Delete results" data-thrash>
               <TrashIcon />
             </button>
           </li>
@@ -29,22 +27,12 @@ import i18next, { t } from 'i18next';
               name="sr__checkmode"
               id="sr__checkmode"
               data-check
+              aria-label="checkmode"
             />
             <label for="sr__checkmode">
               <CheckIcon />
             </label>
           </li>
-          <!-- <li>
-            <input
-              type="checkbox"
-              name="sr__search"
-              id="sr__search"
-              data-check
-            />
-            <label for="sr__search">
-              <SearchIcon />
-            </label>
-          </li> -->
         </ul>
       </nav>
     </div>
