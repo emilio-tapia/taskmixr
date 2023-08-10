@@ -128,8 +128,8 @@ main.main {
 }
 
 [data-shadow_card] {
-  transition: background-color l.$trans_time, color l.$trans_time,
-    box-shadow l.$trans_time;
+  transition: background-color var(--transisiton-time),
+    color var(--transisiton-time), box-shadow var(--transisiton-time);
 
   &:focus,
   &:hover {

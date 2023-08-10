@@ -14,7 +14,6 @@ changeLanguage("fr");
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    <!-- <meta name="generator" content={Astro.generator} /> -->
     <title>{t('site.404.title')} | {t('site.title1')}{t('site.title2')}</title>
     <HeadHrefLangs />
   </head>
@@ -23,10 +22,22 @@ changeLanguage("fr");
 
     <main class="error">
       <h2>{t('site.404.display')}</h2>
-      <button class="saveBtn"><a href="/">{t('site.404.back')}</a></button>
+      <button class="saveBtn" aria-label="Go to main Page"><a href="/">{t('site.404.back')}</a></button>
     </main>
 
     <Footer />
+    <script>
+      import {
+        windowLoadDarkModeCheck,
+        windowLoadThemeCheck,
+        windowLoadLangCheck,
+        windowLoadTourCheck,
+      } from '/src/helpers/mediaQueries';
+      windowLoadDarkModeCheck();
+      windowLoadThemeCheck();
+      windowLoadLangCheck();
+      windowLoadTourCheck();
+    </script>
   </body>
 </html>
 
@@ -34,6 +45,9 @@ changeLanguage("fr");
 <style lang="scss">
   .error {
     text-align: center;
+    display: grid;
+    place-content: center;
+    justify-items: center;
 
     color: var(--accent-gray-title2);
     padding-block-end: var(--block_margin);
@@ -59,15 +73,4 @@ changeLanguage("fr");
   }
 </style>
 
-<script>
-  import {
-    windowLoadDarkModeCheck,
-    windowLoadThemeCheck,
-    windowLoadLangCheck,
-    windowLoadTourCheck,
-  } from '../../helpers/mediaQueries';
-  windowLoadDarkModeCheck();
-  windowLoadThemeCheck();
-  windowLoadLangCheck();
-  windowLoadTourCheck();
-</script>
+

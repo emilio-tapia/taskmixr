@@ -38,7 +38,7 @@
   }
 
   :where(svg) {
-    transition: fill l.$trans_time;
+    transition: fill var(--transisiton-time);
   }
 
   :where(a, p, span, label) {
@@ -115,7 +115,8 @@
 
   text-decoration: none;
   box-sizing: border-box;
-  transition: background-color l.$trans_time, color l.$trans_time;
+  transition: background-color var(--transisiton-time),
+    color var(--transisiton-time);
 
   &::before,
   &::after {

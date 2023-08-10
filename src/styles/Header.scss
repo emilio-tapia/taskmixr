@@ -30,8 +30,8 @@ summary {
   &__title {
     display: grid;
     place-content: center;
-    transition: background-color l.$trans_time, color l.$trans_time,
-      margin l.$trans_time;
+    transition: background-color var(--transisiton-time),
+      color var(--transisiton-time), margin var(--transisiton-time);
 
     h1 {
       margin-block-end: 0.3rem;
@@ -166,6 +166,7 @@ input[type='checkbox'] {
         text-shadow: 0 1px 5px hsl(0deg 0% 0% / 10%);
         font-size: var(--font-size-5);
         line-height: 0.7;
+        padding-block-start: 0.3rem;
       }
     }
   }
