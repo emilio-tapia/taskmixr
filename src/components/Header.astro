@@ -2,10 +2,8 @@
 import '../styles/Header.scss';
 import DarkModeIcon from '../components/icons/DarkModeIcon.astro';
 import PaletteIcon from './icons/PaletteIcon.astro';
-import ShareIcon from './icons/ShareIcon.astro';
-import i18next, { t } from 'i18next';
+import { t } from 'i18next';
 import { LanguageSelector } from 'astro-i18next/components';
-import CoffeeIcon from './icons/CoffeeIcon.astro';
 ---
 
 <header class="header">
@@ -24,24 +22,24 @@ import CoffeeIcon from './icons/CoffeeIcon.astro';
             />
           </li>
           <li class="header__theme" data-submenu>
-            <input type="checkbox" name="themeSwitch" id="themeSwitch" />
+            <input type="checkbox" name="themeSwitch" id="themeSwitch" aria-label="Theme Selector"/>
             <label for="themeSwitch">
               <PaletteIcon />
             </label>
             <nav aria-expanded="false">
               <ul id="themeSwitch_list" class="header__themeList">
                 <li>
-                  <button class="color" data-theme="purple">
+                  <button class="color" data-theme="purple" aria-label="Purple theme">
                     <span></span>
                   </button>
                 </li>
                 <li>
-                  <button class="color" data-theme="green">
+                  <button class="color" data-theme="green" aria-label="Green theme">
                     <span></span>
                   </button>
                 </li>
                 <li>
-                  <button class="color" data-theme="red">
+                  <button class="color" data-theme="red" aria-label="Red theme">
                     <span></span>
                   </button>
                 </li>
@@ -49,7 +47,7 @@ import CoffeeIcon from './icons/CoffeeIcon.astro';
             </nav>
           </li>
           <li class="header__dark">
-            <input type="checkbox" name="darkModeSwitch" id="darkModeSwitch" />
+            <input type="checkbox" name="darkModeSwitch" id="darkModeSwitch" aria-label="Dark/Light Mode"/>
             <label for="darkModeSwitch">
               <DarkModeIcon />
             </label>
@@ -251,8 +249,6 @@ import CoffeeIcon from './icons/CoffeeIcon.astro';
         }
 
         unloadLang()
-
-        // window.addEventListener('beforeunload', async () => {});
       });
     }
   });
