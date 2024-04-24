@@ -1,0 +1,1 @@
+import{w as o,a,b as d,c as w,d as e}from"./Footer.astro_astro_type_script_index_0_lang.0b76bded.js";import"./ResultsScreen.astro_astro_type_script_index_0_lang.66c0fcea.js";window.addEventListener("load",async n=>{o(),a(),d(),w(),e()});

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es" data-theme-general data-mode data-tour>
+  <head>
+    <!-- META CHARSET -->
+    <meta charset="UTF-8">
+
+    <!-- META IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- META VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- META INDEX -->
+    <meta name="robots" content="index">
+
+    <!-- META TITLE -->
+    <title>
+      TASKMIXR | Reparte Tareas al Azar
+    </title>
+
+    <!-- META DESCRIPTION -->
+    <meta name="description" content="Random task assigner for those situations when you and your mates have to split some tasks.">
+
+    <!-- META KEYWORDS -->
+    <meta name="keywords" content="Task Manager, Random Task Assigner, Random Task">
+
+    <!-- META AUTHOR -->
+    <meta name="author" content="Emilio Tapia">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="alternate" hreflang="es" href="http://localhost:3000/es"><link rel="alternate" hreflang="en" href="http://localhost:3000/"><link rel="alternate" hreflang="fr" href="http://localhost:3000/fr">
+  <link rel="stylesheet" href="/_astro/Footer.4b398481.css" />
+<link rel="stylesheet" href="/_astro/404.7eae204e.css" />
+<link rel="stylesheet" href="/_astro/index.a106d72b.css" />
+<link rel="stylesheet" href="/_astro/404.71587ed9.css" /><script type="module" src="/_astro/hoisted.e43d6fd0.js"></script></head>
+  <body>
+    <header class="header">
+  <div class="header__bg">
+    <section class="header__bounds">
+      <div class="header__title">
+        <h1><span>TASK</span><span>MIXR</span></h1>
+      </div>
+      <nav id="headerNav" aria-label="menu" class="header__nav">
+        <ul>
+          <li class="header__lang" data-submenu>
+            <select onchange="location = this.value;" class="header__lang_selector">
+  <option value="/es" selected="true">
+          🇪🇸 
+        </option><option value="/">
+          🇺🇸 
+        </option><option value="/fr">
+          🇫🇷 
+        </option>
+</select>
+          </li>
+          <li class="header__theme" data-submenu>
+            <input type="checkbox" name="themeSwitch" id="themeSwitch" aria-label="Theme Selector">
+            <label for="themeSwitch">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.4 2.096a10.08 10.08 0 0 0-8.937 3.331A10.054 10.054 0 0 0 2.096 13.4c.53 3.894 3.458 7.207 7.285 8.246a9.982 9.982 0 0 0 2.618.354l.142-.001a3.001 3.001 0 0 0 2.516-1.426 2.989 2.989 0 0 0 .153-2.879l-.199-.416a1.919 1.919 0 0 1 .094-1.912 2.004 2.004 0 0 1 2.576-.755l.412.197c.412.198.85.299 1.301.299A3.022 3.022 0 0 0 22 12.14a9.935 9.935 0 0 0-.353-2.76c-1.04-3.826-4.353-6.754-8.247-7.284zm5.158 10.909-.412-.197c-1.828-.878-4.07-.198-5.135 1.494-.738 1.176-.813 2.576-.204 3.842l.199.416a.983.983 0 0 1-.051.961.992.992 0 0 1-.844.479h-.112a8.061 8.061 0 0 1-2.095-.283c-3.063-.831-5.403-3.479-5.826-6.586-.321-2.355.352-4.623 1.893-6.389a8.002 8.002 0 0 1 7.16-2.664c3.107.423 5.755 2.764 6.586 5.826.198.73.293 1.474.282 2.207-.012.807-.845 1.183-1.441.894z"></path><circle cx="7.5" cy="14.5" r="1.5"></circle><circle cx="7.5" cy="10.5" r="1.5"></circle><circle cx="10.5" cy="7.5" r="1.5"></circle><circle cx="14.5" cy="7.5" r="1.5"></circle></svg>
+            </label>
+            <nav aria-expanded="false">
+              <ul id="themeSwitch_list" class="header__themeList">
+                <li>
+                  <button class="color" data-theme="purple" aria-label="Purple theme">
+                    <span></span>
+                  </button>
+                </li>
+                <li>
+                  <button class="color" data-theme="green" aria-label="Green theme">
+                    <span></span>
+                  </button>
+                </li>
+                <li>
+                  <button class="color" data-theme="red" aria-label="Red theme">
+                    <span></span>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </li>
+          <li class="header__dark">
+            <input type="checkbox" name="darkModeSwitch" id="darkModeSwitch" aria-label="Dark/Light Mode">
+            <label for="darkModeSwitch">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z"></path></svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+</header>
+
+    <main class="main">
+      <section class="mainscreen">
+  <aside>
+    <div class="user" id="users" data-card data-shadow_card>
+    
+      <div class="user__content">
+        <div class="user__title">
+          <h5>Nombres</h5>
+        </div>
+        <div class="user__inputs">
+          <input type="text" name="" placeholder="Usuario" id="">
+          <input type="text" name="" placeholder="Usuario" id="">
+        </div>
+      </div>
+      <div class="user__btn">
+        <button class="addBtn" aria-label="Add user">+</button>
+      </div>
+      <!-- children will go here -->
+  </div>
+    <div class="chores" id="chores" data-card data-shadow_card>
+    
+      <div class="chores__content">
+        <div class="chores__title">
+          <h5>Tareas</h5>
+        </div>
+        <div class="chores__inputs">
+          <input type="text" name="" placeholder="Tarea 1" id="">
+          <input type="text" name="" placeholder="Tarea 2" id="">
+        </div>
+      </div>
+      <div class="chores__btn">
+        <button class="addBtn" aria-label="Add task">+</button>
+      </div>
+      <!-- children will go here -->
+  </div>
+  </aside>
+
+  <div class="results__section" id="results" data-card data-shadow_card>
+    
+    <div class="results__content">
+      <div class="results__title">
+        <h5>Resultados</h5>
+      </div>
+      <div class="results__container">
+        <ul>
+          <li>
+            <div>
+              <span class="chore">Tarea 1</span>
+              <span class="user">Usuario</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="results__mainBtns">
+      <input type="text" name="results__title" id="results__title" contenteditable="Results Title" placeholder="Titulo personalizado para tus resultados..." aria-label="Custom title">
+      <button type="submit" class="mainBtn" id="mainBtn" aria-label="Random results">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM5 19V5h14l.002 14H5z"></path><circle cx="8" cy="8" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle><circle cx="16" cy="16" r="1.5"></circle><circle cx="8" cy="16" r="1.5"></circle><circle cx="16" cy="8" r="1.5"></circle></svg>
+      </button>
+
+      <button type="submit" class="saveBtn" id="saveBtn" aria-label="Save results" disabled><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 21h14a2 2 0 0 0 2-2V8l-5-5H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zM7 5h4v2h2V5h2v4H7V5zm0 8h10v6H7v-6z"></path></svg></button>
+    </div>
+    <!-- children will go here -->
+  </div>
+</section>
+      <!-- sr === saved results --><section class="sr">
+  <div class="sr__card" data-card data-shadow_card>
+    <div class="sr__title">
+      <h5>Resultados Guardados</h5>
+      <nav class="sr__options">
+        <ul>
+          <li aria-hidden="true">
+            <button id="sr__delete_btn" aria-label="Delete results" data-thrash>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z"></path></svg>
+            </button>
+          </li>
+          <li>
+            <input type="checkbox" name="sr__checkmode" id="sr__checkmode" data-check aria-label="checkmode">
+            <label for="sr__checkmode">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 5c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2H7zm0 12V7h10l.002 10H7z"></path><path d="M10.996 12.556 9.7 11.285l-1.4 1.43 2.704 2.647 4.699-4.651-1.406-1.422z"></path></svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sr__accordion" id="accordion"></div>
+  </div>
+</section>
+    </main>
+
+    <footer class="footer" id="footer">
+  <div class="footer__bg">
+    <section class="footer__bounds">
+      <div class="footer__title">
+        <h4>
+          Desarrollado por
+          <a href="https://emilio-tapia.com/">Emilio Tapia</a>
+        </h4>
+      </div>
+      <nav id="navFooter" class="footer__nav">
+        <ul>
+          <li>
+            <a href="https://github.com/emilio-tapia/taskmixr" aria-label="Go to github repository">
+              <label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z"></path></svg>
+              </label>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="footer__title">
+        <h4>MIT License 2024</h4>
+      </div>
+    </section>
+  </div>
+</footer>
+  
+</body></html>

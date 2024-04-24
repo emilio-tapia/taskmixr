@@ -1,0 +1,28 @@
+{
+  "site": {
+    "title1": "TASK",
+    "title2": "MIXR",
+    "catchphrase": "Reparte Tareas al Azar",
+    "user": "Usuario",
+    "chore": "Tarea",
+    "titleblank": "Titulo personalizado para tus resultados...",
+    "random": "Random",
+    "save": "Guardar",
+    "enteruser": "Nombres",
+      "enterchore": "Tareas",
+      "resultlist": "Resultados",
+    "footer": {
+      "developed": "Desarrollado por",
+      "copyright": "MIT License"
+    },
+    "404": {
+      "title": "Error 404",
+      "display": "Ups, se produjo un error!",
+      "back": "Ir a la aplicación"
+    }
+  },
+  "resultsContainer": {
+    "title": "Resultados Guardados",
+    "title_tooltip": "Todos los resultados son guardados localmente."
+  }
+}
