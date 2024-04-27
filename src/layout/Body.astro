@@ -1,0 +1,66 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+// import MenuMobileOverlay from "@/components/header/MenuMobileOverlay.astro";
+// import DarkMode from "@/scripts/theme/DarkMode.astro";
+import BodyBoundaries from "./BodyBoundaries.astro";
+// import MenuMobileOverlay from "@/components/header/MenuMobileOverlay.astro";
+---
+
+<body>
+  <!-- <DarkMode /> -->
+
+  <div
+    id="app"
+    class="bg-pal_white bg-[#393939] dark:bg-pal_dark menu-mobile-overlay min-h-[100dvh]"
+  >
+    <Header />
+    <BodyBoundaries className="@container/main">
+      <div class="[grid-area:main] mt-[4.5rem] divide-y divide-black">
+        <slot />
+      </div>
+      <Footer />
+      <BodyBoundaries />
+
+      <!-- <MenuMobileOverlay /> -->
+    </BodyBoundaries>
+  </div>
+
+  <!-- <script src="@/scripts/tailwind/tailwindBreakpoint.js"></script> -->
+  <script src="@/scripts/gsap/gsap_setup.ts"></script>
+</body>
+
+<script>
+  // GET BOUNDING CLIENT
+  // X & Y: ORIGIN POINT CORNER LEFT / TOP
+  // HEIGHT: HEIGHT ELEMENT
+  // WIDTH: WIDTH ELEMENT
+  // TOP: SPACE FROM TOP (Y)
+  // BOTTOM: SPACE FROM TOP (Y) + HEIGHT ELEMENT
+  // LEFT: SPACE FROM LEFT (X)
+  // RIGHT: SPACE FROM LEFT (X) + WIDTH ELEMENT
+</script>
+
+<script>
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   console.log("DOMContentLoaded");
+  // });
+  // document.addEventListener("load", () => {
+  //   console.log("load");
+  // });
+  // document.addEventListener("astro:before-preparation", () => {
+  //   console.log("astro:before-preparation");
+  // });
+  // document.addEventListener("astro:after-preparation", () => {
+  //   console.log("astro:after-preparation");
+  // });
+  // document.addEventListener("astro:before-swap", () => {
+  //   console.log("astro:before-swap");
+  // });
+  // document.addEventListener("astro:after-swap", () => {
+  //   console.log("astro:after-swap");
+  // });
+  // document.addEventListener("astro:page-load", () => {
+  //   console.log("astro:page-load");
+  // });
+</script>

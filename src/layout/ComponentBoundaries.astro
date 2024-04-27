@@ -1,0 +1,11 @@
+---
+import { clsxm } from "@/utils/styles/tw";
+type Props = {
+  className?: string;
+};
+const { className = "" } = Astro.props;
+---
+
+<div data-boundaries class:list={clsxm(["px-4 py-3", className])}>
+  <slot />
+</div>
