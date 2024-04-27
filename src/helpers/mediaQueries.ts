@@ -1,6 +1,6 @@
-import { Helpers } from './Helpers';
-import { localStorageKey, lang } from './data';
-import { initDriver } from './driver';
+import { Helpers } from "../utils/Helpers";
+import { localStorageKey, lang } from "./data";
+import { initDriver } from "../vendor/driverjs/driver";
 
 export function windowLoadDarkModeCheck() {
   // LOAD LOCAL STORAGE
@@ -16,7 +16,7 @@ export function windowLoadDarkModeCheck() {
   if (!localStorageData.darkMode) {
     if (
       window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
+      window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
       setDarkModeToDOM();
       Helpers.getDarkModeUserPreference({ save: true });
@@ -34,11 +34,11 @@ export function windowLoadDarkModeCheck() {
 
   function setDarkModeToDOM() {
     const darkModeCheckbox = document.getElementById(
-      'darkModeSwitch'
+      "darkModeSwitch",
     ) as HTMLInputElement;
     const darkModeLabel = darkModeCheckbox.nextElementSibling;
     // SET ATT TO HTML
-    document.documentElement.dataset['mode'] = 'dark';
+    document.documentElement.dataset["mode"] = "dark";
     // SET CHECK TO CHECKBOX
     darkModeCheckbox.checked = true;
     // ASSIGN CORRECT SVG ICON
@@ -49,10 +49,10 @@ export function windowLoadDarkModeCheck() {
 
   function setLightModeToDOM() {
     const darkModeCheckbox = document.getElementById(
-      'darkModeSwitch'
+      "darkModeSwitch",
     ) as HTMLInputElement;
     // SET ATT TO HTML
-    document.documentElement.dataset['mode'] = 'light';
+    document.documentElement.dataset["mode"] = "light";
     darkModeCheckbox.checked = false;
   }
 }
@@ -77,11 +77,11 @@ export function windowLoadThemeCheck() {
   return;
 
   function setThemeByColor(data: string) {
-    document.documentElement.dataset['themeGeneral'] = data;
+    document.documentElement.dataset["themeGeneral"] = data;
   }
 
   function setThemeDefault() {
-    document.documentElement.dataset['themeGeneral'] = 'purple';
+    document.documentElement.dataset["themeGeneral"] = "purple";
   }
 }
 
@@ -89,7 +89,7 @@ export function windowLoadLangCheck() {
   const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
 
   if (localStorageData.lang) {
-    if(localStorageData.lang !== document.documentElement.lang){
+    if (localStorageData.lang !== document.documentElement.lang) {
       window.location.href = localStorageData.lang;
     }
     return;
@@ -111,7 +111,7 @@ export function windowLoadLangCheck() {
   return;
 
   function setLangDefault() {
-    document.documentElement.lang = 'en';
+    document.documentElement.lang = "en";
   }
 }
 
@@ -119,31 +119,29 @@ export function windowLoadTourCheck() {
   const localStorageData = Helpers.loadFromLocalStorage(localStorageKey);
 
   if (localStorageData === null) {
-    initDriver()
+    initDriver();
     Helpers.getTourUserPreference({ save: true });
     return;
   }
 
   // IF NOT LOCAL STORAGE, USE NAVIGATOR
   if (!localStorageData.tour) {
-    initDriver()
+    initDriver();
     Helpers.getTourUserPreference({ save: true });
     return;
   }
   return;
-
-
 }
 
-export function windowSetTransitions(){
+export function windowSetTransitions() {
   let root = document.documentElement;
   let transitionChange = false;
   const timeout = setTimeout(() => {
-    root.style.setProperty('--transisiton-time', '300ms');
+    root.style.setProperty("--transisiton-time", "300ms");
     transitionChange = true;
   }, 750);
 
-  if(transitionChange){
-    clearTimeout(timeout)
+  if (transitionChange) {
+    clearTimeout(timeout);
   }
 }
