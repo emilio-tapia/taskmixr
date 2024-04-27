@@ -10,9 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.1.4",
     "astro": "^4.7.0",
-    "astro-i18next": "^1.0.0-beta.21",
     "driver.js": "^1.2.1",
     "sass": "^1.64.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
   }
 }
