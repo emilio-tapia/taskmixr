@@ -1,8 +1,21 @@
 {
-  "extends": "astro/tsconfigs/strict",
-
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "moduleResolution": "bundler"
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components": ["src/components/*"],
+      "@/icons": ["src/icons/*"],
+      "@/lib": ["src/lib/*"],
+      "@/data": ["src/data/*"],
+      "@/layout": ["src/layout/*"],
+      "@/screens": ["src/screens/*"],
+      "@/scripts": ["src/scripts/*"],
+      "@/store": ["src/store/*"],
+      "@/assets": ["src/assets/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  // "files": ["node_modules/gsap/types/index.d.ts"],\
+  "extends": "astro/tsconfigs/strictest"
 }
